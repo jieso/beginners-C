@@ -3,6 +3,7 @@
 
 #include"contact.h"
 
+//初始化通讯录
 void InitContact(struct Contact* ps)
 {
 	//初始化通讯录
@@ -12,7 +13,7 @@ void InitContact(struct Contact* ps)
 //添加联系人
 void Addcontact(struct Contact* ps)
 {
-	if (ps->size == MAX)
+	if (ps->size == MAX-1)
 	{
 		printf("通讯录已满，无法增加\n");
 	}
@@ -98,7 +99,7 @@ void Searchcontact(const struct Contact* ps)
 }
 
 //打印联系人信息
-void ShowContact(const struct Contact* ps)
+void Showcontact(const struct Contact* ps)
 {
 	if (ps->size == 0)
 	{
@@ -144,5 +145,63 @@ void Modifycontact(struct Contact* ps)
 		printf("请输入地址:>\n");
 		scanf("%s", ps->data[pos].addr);
 		printf("修改成功\n");
+	}
+}
+
+//排序联系人
+void Sortcontact(struct Contact* ps)
+{
+	if (ps->size == 0)
+	{
+		printf("通讯录为空\n");
+	}
+	else
+	{
+		int TJ = 0;
+		int i, j;
+
+		printf("请选择排序的条件\n");
+		printf("1：姓名，2：年龄\n");
+		scanf("%d", &TJ);
+		while (TJ)
+		{
+			if (TJ == 2)
+			{
+				for (i = 0; i < ps->size; i++)
+				{
+					for (j = 0; j < ps->size - 1; j++)
+					{
+						if (ps->data[j].age > ps->data[j + 1].age
+							&& ps->data[j].age != 0)
+						{
+							ps->data[MAX - 1] = ps->data[j];
+							ps->data[j] = ps->data[j + 1];
+							ps->data[j + 1] = ps->data[MAX - 1];
+						}
+					}
+				}
+				printf("排序成功\n");
+				TJ = 0;
+			}
+			if (TJ == 1)
+			{
+				for (i = 0; i < ps->size; i++)
+				{
+					for (j = 0; j < ps->size - 1; j++)
+					{
+						if (1 <= strcmp(ps->data[j].name, ps->data[j + 1].name)
+							&& ps->data[j].name != '0')
+						{
+							ps->data[MAX - 1] = ps->data[j];
+							ps->data[j] = ps->data[j + 1];
+							ps->data[j + 1] = ps->data[MAX - 1];
+						}
+					}
+				}
+				printf("排序成功\n");
+				TJ = 0;
+			}
+
+		}
 	}
 }

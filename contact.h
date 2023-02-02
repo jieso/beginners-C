@@ -6,11 +6,18 @@
 
 enum SJ//通讯录的常量值设定
 {
-	MAX = 1000,
+	MAX = 1001,
 	MAX_NAME = 20,
 	MAX_SEX = 5,
 	MAX_TELR = 20,
-	MAX_ADDR = 30
+	MAX_ADDR = 30,
+	Exit = 0,
+	Add,
+	Del,
+	Search,
+	Modify,
+	Show,
+	Sort
 };
 
 //创建的通讯录
@@ -42,3 +49,5 @@ void Delcontact(struct Contact* ps);
 void Searchcontact(const struct Contact* ps);
 //修改指定的联系人信息
 void Modifycontact(struct Contact* ps);
+//排序通讯录内容
+void Sortcontact(struct Contact* ps);
