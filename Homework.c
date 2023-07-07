@@ -3,6 +3,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<assert.h>
+#include<string.h>
 
 
 
@@ -155,45 +157,147 @@
 //	}
 //	return 0;
 //}
+//判断s2是否是s1旋转以后的字符串------------------------------------------
+//void Rotation(char* head,int sz)
+//{
+//	char tmp = *head;
+//	char* beght = head;
+//	while (sz-- > 1)
+//		*head++ = *++beght;
+//	*head = tmp;
+//}
+//
+//int Find(char* s1, char* s2)
+//{
+//	
+//	int tmp=strlen(s1);
+//	if (strlen(s2) != tmp)
+//		return 0;
+//	int j = tmp;
+//	char* head1 = s1;
+//	char* head2 = s2;
+//	while (j-->1)
+//	{
+//		int i = 0;
+//		while (*head1++ == *head2++&&i++<tmp)
+//		{
+//			if (tmp == i)
+//				return 1;
+//		}
+//		head1 = s1;
+//		head2 = s2;		
+//		Rotation(&s1[0],tmp);
+//	}
+//	return 0;
+//}
+//模拟strstr---------------------------------------------------------------- 
+//char* my_strstr(const char* s1, const char* s2)
+//{
+//	assert(s1);
+//	assert(s2);
+//	char* p1 = s1;
+//	char* p2 = s2;
+//	while (*s1++ != '\0')
+//	{
+//		while (*p1++ == *p2++)
+//		{
+//			if (*p2 == '\0')
+//				return --s1;
+//		}
+//		p1 = s1;
+//		p2 = s2;
+//	}
+//	return NULL;
+//}
+//
+//int main()
+//{
+//	char s1[50] = { "BBACACACACD" };
+//	char s2[] = { "ACD" };
+//	char* tf = my_strstr(&s1, &s2);
+//	printf("%s", s1);
+//	return 0;
+//}
+//模拟strcar函数-----------------------------------------------------
+//char* my_strcat(char* e1, const char* e2)
+//{
+//	assert(e1&&e2);
+//	char* p1 = e1;
+//	while (*e1)
+//	*e1++;
+//	while (*e1++ = *e2++);
+//	return &p1[0];
+//}
 
-void Rotation(char* head,int sz)
-{
-	char tmp = *head;
-	char* beght = head;
-	while (sz-- > 1)
-		*head++ = *++beght;
-	*head = tmp;
-}
+//int main()
+//{
+//	char s1[50] = "bbac" ;
+//	char s2[] =  "sacd" ;
+//	char* tf = my_strcat(s1, s2);
+//	printf("%s", tf);
+//	return 0;
+//}
+//模拟strcmp函数————————————————————————————
+//int my_strcmp(const char* e1, const char* e2)
+//{
+//	assert(e1 && e2);
+//	while (*e1 && *e2)
+//	{
+//		if (((int)(*e1)) > ((int)(*e2)))
+//			return 1;
+//		else if (((int)(*e1)) < ((int)(*e2)))
+//			return -1;
+//		e1++;
+//		e2++;
+//	}
+//	if (*e1 != '\0'&&*e2=='\0')
+//		return 1;
+//	else if (*e2 != '\0' && *e1 == '\0')
+//		return -1;
+//	return 0;
+//}
 
-int Find(char* s1, char* s2)
+//int main()
+//{
+//	char s1[] = "ABCD" ;
+//	char s2[] =  "ABBCD" ;
+//	int tf = my_strcmp(s1, s2);
+//	printf("%d", tf);
+//	return 0;
+//}
+
+//模拟strcpy函数-----------------------------------------------------
+//char* my_strcpy(char* e1, const char* e2)
+//{
+//	char* p1 = e1;
+//	while (*e1++ = *e2++);
+//	return &p1[0];
+//}
+//int main()
+//{
+//	char s1[20] = "SSSABCDs";
+//	char s2[] = "ABBCD";
+//	char* tf = my_strcpy(s1, s2);
+//	printf("%s", tf);
+//	return 0;
+//}
+
+int my_strlen(const char* e1)
 {
-	
-	int tmp=strlen(s1);
-	if (strlen(s2) != tmp)
-		return 0;
-	int j = tmp;
-	char* head1 = s1;
-	char* head2 = s2;
-	while (j-->1)
+	int tmp = 0;
+	while (*e1)
 	{
-		int i = 0;
-		while (*head1++ == *head2++&&i++<tmp)
-		{
-			if (tmp == i)
-				return 1;
-		}
-		head1 = s1;
-		head2 = s2;		
-		Rotation(&s1[0],tmp);
+		*e1++;
+		tmp++;
 	}
-	return 0;
+	return tmp;
 }
 
 int main()
 {
-	char s1[] = { "AAAACD" };
-	char s2[] = { "CDAAAA" };
-	int tf=Find(&s1, &s2);
+	char s1[20] = "SSSABCDs";
+	char s2[] = "ABBCD";
+	int tf = my_strlen(s1);
 	printf("%d", tf);
 	return 0;
 }
